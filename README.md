@@ -281,6 +281,14 @@ The extracted keypoint dataset (`main_dataset.db`) and trained models are includ
 
 ---
 
+## Project Docs
+
+- [`docs/final-presentation.pptx`](docs/final-presentation.pptx) — final FYP defense presentation
+- [`docs/fyp-logics.docx`](docs/fyp-logics.docx) — design/logic notes written during development
+- An earlier, simpler iteration of the UI (before the LinguaSign redesign) is preserved at [pakistan-sign-language-detection-system-classic-ui](https://github.com/waqaswajla/pakistan-sign-language-detection-system-classic-ui)
+
+---
+
 ## License
 
 This project is licensed under the [MIT License](LICENSE).
