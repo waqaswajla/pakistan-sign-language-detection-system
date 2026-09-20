@@ -287,7 +287,7 @@ The extracted keypoint dataset (`main_dataset.db`) and trained models are includ
 
 - [`docs/final-presentation.pptx`](docs/final-presentation.pptx) — final FYP defense presentation
 - [`docs/fyp-logics.docx`](docs/fyp-logics.docx) — design/logic notes written during development
-- An earlier, simpler iteration of the UI (before the LinguaSign redesign) is preserved at [pakistan-sign-language-detection-system-classic-ui](https://github.com/waqaswajla/pakistan-sign-language-detection-system-classic-ui)
+- An earlier, simpler iteration of the UI (before the LinguaSign redesign) is preserved at [linguasign-sign-to-speech-converter](https://github.com/waqaswajla/linguasign-sign-to-speech-converter)
 
 ---
 
