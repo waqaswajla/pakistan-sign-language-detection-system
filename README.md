@@ -4,6 +4,8 @@
 
 A real-time Pakistani Sign Language (PSL) recognition system that translates hand gestures into Urdu text and speech, with a full learning platform built on top.
 
+![LinguaSign Project Poster](docs/linguasign-poster.png)
+
 ---
 
 ## Application Overview
