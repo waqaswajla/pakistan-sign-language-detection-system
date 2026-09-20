@@ -488,6 +488,7 @@ function TechPipelineViz({ onTFClick, onSCClick, onMPClick }: { onTFClick?: () =
     const ctxOrNull = canvas.getContext('2d');
     if (!ctxOrNull) return;
     const ctx: CanvasRenderingContext2D = ctxOrNull;
+    const canvasEl: HTMLCanvasElement = canvas;
 
     const W = canvas.width;
     const H = canvas.height;
@@ -777,7 +778,7 @@ function TechPipelineViz({ onTFClick, onSCClick, onMPClick }: { onTFClick?: () =
     };
 
     function onMouseMove(e: MouseEvent) {
-      const rect = canvas.getBoundingClientRect();
+      const rect = canvasEl.getBoundingClientRect();
       const scaleX = W / rect.width;
       const scaleY = H / rect.height;
       const mx = (e.clientX - rect.left) * scaleX;
@@ -785,11 +786,11 @@ function TechPipelineViz({ onTFClick, onSCClick, onMPClick }: { onTFClick?: () =
       tfHov = mx >= B.tf.x && mx <= B.tf.x + B.tf.w && my >= B.tf.y && my <= B.tf.y + B.tf.h;
       scHov = mx >= B.sc.x && mx <= B.sc.x + B.sc.w && my >= B.sc.y && my <= B.sc.y + B.sc.h;
       mpHov = mx >= B.mp.x && mx <= B.mp.x + B.mp.w && my >= B.mp.y && my <= B.mp.y + B.mp.h;
-      canvas.style.cursor = (tfHov || scHov || mpHov) ? 'pointer' : 'crosshair';
+      canvasEl.style.cursor = (tfHov || scHov || mpHov) ? 'pointer' : 'crosshair';
     }
 
     function onClick(e: MouseEvent) {
-      const rect = canvas.getBoundingClientRect();
+      const rect = canvasEl.getBoundingClientRect();
       const scaleX = W / rect.width;
       const scaleY = H / rect.height;
       const mx = (e.clientX - rect.left) * scaleX;
