@@ -112,8 +112,8 @@ The layout is split into a control panel on the left and the live camera feed on
 ### 1. Clone the repository
 
 ```bash
-git clone https://github.com/abdul-wahid-lab/fyp-project-Pakistan-sign-language-detection-system.git
-cd fyp-project-Pakistan-sign-language-detection-system
+git clone https://github.com/waqaswajla/pakistan-sign-language-detection-system.git
+cd pakistan-sign-language-detection-system
 ```
 
 ### 2. Set up the backend
@@ -251,10 +251,12 @@ Custom-collected PSL keypoint dataset captured via MediaPipe, stored in SQLite. 
 
 This project is licensed under the [MIT License](LICENSE).
 
-Copyright (c) 2026 Abdul Wahid
+Copyright (c) 2026 Waqas Ahmed
 
 ---
 
 ## Author
 
-**Abdul Wahid** — [abdul-wahid-lab](https://github.com/abdul-wahid-lab)
+**Waqas Ahmed** — [waqaswajla](https://github.com/waqaswajla)
+
+For any queries, reach out at wow.992du@gmail.com or +92 300 0700908.

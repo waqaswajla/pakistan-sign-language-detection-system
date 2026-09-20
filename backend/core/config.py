@@ -9,9 +9,9 @@ class Settings(BaseSettings):
 
     SMTP_HOST: str = "smtp.gmail.com"
     SMTP_PORT: int = 587
-    SMTP_USER: str = "cs.abdulwahid@gmail.com"
+    SMTP_USER: str = "wow.992du@gmail.com"
     SMTP_PASS: str = ""
-    CONTACT_TO: str = "cs.abdulwahid@gmail.com"
+    CONTACT_TO: str = "wow.992du@gmail.com"
 
     class Config:
         env_file = ".env"

@@ -256,7 +256,8 @@ export function LsFooter() {
           <h4 style={{ fontSize: 18, marginBottom: 16, color: 'white', fontFamily: 'var(--font-display)' }}>Get in touch</h4>
           <div style={{ display: 'flex', flexDirection: 'column', gap: 11, fontSize: 14.5, color: 'rgba(255,255,255,0.72)' }}>
             <span>Lahore, Pakistan</span>
-            <Link href="/contact" className="ls-footer-link">cs.abdulwahid@gmail.com</Link>
+            <Link href="/contact" className="ls-footer-link">wow.992du@gmail.com</Link>
+            <span>+92 300 0700908</span>
             <span>Mon–Fri · 9am–6pm PKT</span>
           </div>
         </div>
