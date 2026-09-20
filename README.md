@@ -245,6 +245,8 @@ MediaPipe Holistic extracts 21 hand landmarks per frame, each carrying `[x, y, c
 
 Custom-collected PSL keypoint dataset captured via MediaPipe, stored in SQLite. Alphabet dataset uses `alphabetDataset` table; word dataset uses `wordDataset`. Confusion-matrix analysis was used iteratively to identify and correct misclassified letter pairs.
 
+The extracted keypoint dataset (`main_dataset.db`) and trained models are included in this repo so the app runs out of the box. The raw source images/video frames used to build that dataset are kept private (they contain identifiable photos of the people who volunteered for data collection) and are not published here. Reach out below if you need access for research or evaluation purposes.
+
 ---
 
 ## License
