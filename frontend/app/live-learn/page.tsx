@@ -4,8 +4,9 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { Logo, LsThemeToggle } from '../components/ls/Components';
 import * as I from '../components/ls/Icons';
+import { API_BASE } from '../lib/api';
 
-const API = "http://127.0.0.1:8000/api";
+const API = `${API_BASE}/api`;
 
 const ALPHABETS = [
   { label: 'ء', roman: 'Hamza',       image: '/images/alphabet/1.png'  },
@@ -68,9 +69,12 @@ export default function LiveLearnPage() {
 
   const pollRef  = useRef<ReturnType<typeof setInterval> | null>(null);
   const flashRef = useRef<ReturnType<typeof setTimeout>  | null>(null);
-  const idxRef   = useRef(0);   idxRef.current  = idx;
-  const modeRef  = useRef<Mode>('alphabets'); modeRef.current = mode;
-  const phaseRef = useRef<Phase>('idle');     phaseRef.current = phase;
+  const idxRef   = useRef(0);
+  const modeRef  = useRef<Mode>('alphabets');
+  const phaseRef = useRef<Phase>('idle');
+  useEffect(() => { idxRef.current = idx; }, [idx]);
+  useEffect(() => { modeRef.current = mode; }, [mode]);
+  useEffect(() => { phaseRef.current = phase; }, [phase]);
 
   const SIGNS    = mode === 'alphabets' ? ALPHABETS : WORDS;
   const sign     = SIGNS[idx] ?? SIGNS[0];

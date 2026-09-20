@@ -245,11 +245,9 @@ function NeuralNetViz() {
       particles = particles.filter(p => Math.abs(p.x - p.tx) > 0.5);
     }
 
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const rr = (x: number, y: number, w: number, h: number, r: number) => {
       ctx.beginPath();
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      if ((ctx as any).roundRect) (ctx as any).roundRect(x, y, w, h, r);
+      if (typeof ctx.roundRect === 'function') ctx.roundRect(x, y, w, h, r);
       else ctx.rect(x, y, w, h);
     };
 
@@ -518,11 +516,10 @@ function TechPipelineViz({ onTFClick, onSCClick, onMPClick }: { onTFClick?: () =
     let tfHov = false;
     let scHov = false;
     let mpHov = false;
-    const PRED = 'ا ب پ ت ث ج ح خ د ر ز س ش ص ط ع ف ق ک گ ل م ن و ہ ی ے'.split(' ');
 
     const rr = (x: number, y: number, w: number, h: number, r: number) => {
       ctx.beginPath();
-      if ((ctx as any).roundRect) (ctx as any).roundRect(x, y, w, h, r);
+      if (typeof ctx.roundRect === 'function') ctx.roundRect(x, y, w, h, r);
       else ctx.rect(x, y, w, h);
     };
 

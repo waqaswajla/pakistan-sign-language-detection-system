@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { LsPublicNav, LsFooter } from '../components/ls/Components';
 import * as I from '../components/ls/Icons';
+import { API_BASE } from '../lib/api';
 
 const CATEGORIES = [
   { key: 'accuracy',  label: 'Detection Accuracy' },
@@ -105,7 +106,7 @@ export default function FeedbackPage() {
                 e.preventDefault();
                 setSending(true); setError('');
                 try {
-                  const res = await fetch('http://localhost:8000/api/feedback', {
+                  const res = await fetch(`${API_BASE}/api/feedback`, {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ name, ratings, likes, improve }),
                   });

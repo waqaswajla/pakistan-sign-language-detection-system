@@ -1,5 +1,7 @@
 # LinguaSign — Pakistan Sign Language Detection System
 
+[![Frontend CI](https://github.com/waqaswajla/pakistan-sign-language-detection-system/actions/workflows/frontend-ci.yml/badge.svg)](https://github.com/waqaswajla/pakistan-sign-language-detection-system/actions/workflows/frontend-ci.yml)
+
 A real-time Pakistani Sign Language (PSL) recognition system that translates hand gestures into Urdu text and speech, with a full learning platform built on top.
 
 ---
@@ -31,6 +33,22 @@ The layout is split into a control panel on the left and the live camera feed on
 
 ---
 
+### How It Works
+
+![How It Works](frontend/public/images/screenshots/how-it-works.png)
+
+An interactive, animated breakdown of the six-stage detection pipeline — from camera capture through MediaPipe landmark extraction, feature scaling, and neural network classification, to building words and speaking them aloud.
+
+---
+
+### Dictionary
+
+![PSL Dictionary](frontend/public/images/screenshots/dictionary.png)
+
+A searchable reference covering all 37 alphabet signs and the 5 supported words, for learners who want to browse outside of live detection.
+
+---
+
 ## Features
 
 ### Detection
@@ -41,11 +59,14 @@ The layout is split into a control panel on the left and the live camera feed on
 - **Adjustable speed** — tune detection cooldown from 300 ms to 3 seconds
 
 ### Learning Platform
+- **Google sign-in** — account creation and login via NextAuth, backed by a local SQLite user store
 - **Dashboard** — day streak tracker, weekly activity chart, signs-detected counter, recent history
 - **Learn page** — browse all 37 PSL letters with hover-to-reveal sign images; quick quiz on PSL words
 - **Live Learn** — real-time webcam practice with collapsible letter sidebar
 - **Live Quiz** — timed quiz mode using the live camera
 - **Dictionary** — searchable reference for all letters and words
+- **Donate** — Stripe-powered donation page supporting the project
+- **Contact & Feedback** — forms that email submissions via Gmail SMTP and log them locally
 
 ### UI / UX
 - **Light & dark mode** — persisted theme toggle across all pages
@@ -105,7 +126,7 @@ The layout is split into a control panel on the left and the live camera feed on
 
 ### Prerequisites
 
-- Python 3.9+
+- Python 3.9–3.11 (TensorFlow/MediaPipe don't yet support 3.12+)
 - Node.js 18+
 - A webcam
 
@@ -140,16 +161,10 @@ Install dependencies:
 pip install -r requirements.txt
 ```
 
-Create a `.env` file in the `backend/` folder:
+Copy `.env.example` to `.env` in the `backend/` folder (defaults work as-is for local development; only fill in `SMTP_PASS` if you want the contact/feedback forms to actually send email — see comments in the file for how to get a Gmail App Password):
 
-```env
-CAMERA_INDEX=0
-MODEL_PATH=data/models/alphabet_model.h5
-LABEL_ENCODER_PATH=data/models/alphabet_label_encoder.pkl
-SCALER_PATH=data/models/alphabet_scaler.pkl
-WORD_MODEL_PATH=data/models/word_model.h5
-WORD_LABEL_ENCODER_PATH=data/models/word_label_encoder.pkl
-WORD_SCALER_PATH=data/models/word_scaler.pkl
+```bash
+cp .env.example .env
 ```
 
 Start the backend:
@@ -163,6 +178,15 @@ uvicorn main:app --reload --host 127.0.0.1 --port 8000
 ```bash
 cd frontend
 npm install
+```
+
+Copy `.env.example` to `.env.local` (defaults work for local development; `AUTH_*` and `STRIPE_SECRET_KEY` are only needed if you want Google sign-in and donations to work):
+
+```bash
+cp .env.example .env.local
+```
+
+```bash
 npm run dev
 ```
 
@@ -246,6 +270,14 @@ MediaPipe Holistic extracts 21 hand landmarks per frame, each carrying `[x, y, c
 Custom-collected PSL keypoint dataset captured via MediaPipe, stored in SQLite. Alphabet dataset uses `alphabetDataset` table; word dataset uses `wordDataset`. Confusion-matrix analysis was used iteratively to identify and correct misclassified letter pairs.
 
 The extracted keypoint dataset (`main_dataset.db`) and trained models are included in this repo so the app runs out of the box. The raw source images/video frames used to build that dataset are kept private (they contain identifiable photos of the people who volunteered for data collection) and are not published here. Reach out below if you need access for research or evaluation purposes.
+
+---
+
+## Deployment
+
+- **Backend** — deploy as a standard FastAPI app (e.g. Render, Railway, Fly.io). Set the environment variables from `backend/.env.example`, including `ALLOWED_ORIGINS` pointed at your deployed frontend's URL.
+- **Frontend** — deploy to Vercel (or any Node host) with the variables from `frontend/.env.example`, pointing `NEXT_PUBLIC_API_URL` at your deployed backend.
+- The live camera stream and detection rely on the browser's webcam access, so both frontend and backend should be served over HTTPS in production.
 
 ---
 

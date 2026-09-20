@@ -6,8 +6,9 @@ import { useRouter } from "next/navigation";
 import { Logo, LsThemeToggle } from "../components/ls/Components";
 import * as I from "../components/ls/Icons";
 import { saveDetection } from "../lib/history";
+import { API_BASE } from "../lib/api";
 
-const API = "http://127.0.0.1:8000/api";
+const API = `${API_BASE}/api`;
 
 function Toggle({ on, onClick }: { on: boolean; onClick: () => void }) {
   return (
@@ -261,7 +262,7 @@ export default function SignPage() {
           <div className="psl-sign-cambox" style={{ width: '100%', maxWidth: 720, aspectRatio: '4/3', borderRadius: 20, border: '1px solid var(--line)', background: 'var(--surface)', overflow: 'hidden', position: 'relative' }}>
             {detecting ? (
               /* eslint-disable-next-line @next/next/no-img-element */
-              <img src="http://127.0.0.1:8000/api/stream" alt="Live feed" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              <img src={`${API_BASE}/api/stream`} alt="Live feed" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
             ) : (
               <div style={{ width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 14, color: 'var(--ink-faint)' }}>
                 <I.Camera size={56} sw={1.2} />

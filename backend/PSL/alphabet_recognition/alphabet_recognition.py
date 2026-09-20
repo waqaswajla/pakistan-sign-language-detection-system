@@ -10,9 +10,9 @@ import numpy as np
 from tensorflow.keras.models import load_model
 
 
-model  = load_model("data\\models\\alphabet_model.h5")
-scaler = pickle.load(open("data\\models\\alphabet_scaler.pkl", "rb"))
-le     = pickle.load(open("data\\models\\alphabet_label_encoder.pkl", "rb"))
+model  = load_model("data/models/alphabet_model.h5")
+scaler = pickle.load(open("data/models/alphabet_scaler.pkl", "rb"))
+le     = pickle.load(open("data/models/alphabet_label_encoder.pkl", "rb"))
 print("alphabet model loaded")
 
 

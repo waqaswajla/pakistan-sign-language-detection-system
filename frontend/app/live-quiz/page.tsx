@@ -4,8 +4,9 @@ import { useState, useEffect, useRef, useCallback } from 'react';
 import Link from 'next/link';
 import { Logo, LsThemeToggle } from '../components/ls/Components';
 import * as I from '../components/ls/Icons';
+import { API_BASE } from '../lib/api';
 
-const API = "http://127.0.0.1:8000/api";
+const API = `${API_BASE}/api`;
 
 const ALL_SIGNS = [
   { target: 'ء', image: '/images/alphabet/1.png',  mode: 0 },
@@ -104,11 +105,18 @@ export default function LiveQuizPage() {
 
   const pollRef    = useRef<ReturnType<typeof setInterval> | null>(null);
   const timerRef   = useRef<ReturnType<typeof setInterval> | null>(null);
-  const sessionRef = useRef<SessionPhase>('idle'); sessionRef.current = session;
-  const qRef       = useRef(0);                   qRef.current = q;
-  const questionsRef = useRef(questions);          questionsRef.current = questions;
+  const sessionRef = useRef<SessionPhase>('idle');
+  const qRef       = useRef(0);
+  const questionsRef = useRef(questions);
+  useEffect(() => { sessionRef.current = session; }, [session]);
+  useEffect(() => { qRef.current = q; }, [q]);
+  useEffect(() => { questionsRef.current = questions; }, [questions]);
 
-  useEffect(() => { setQuestions(pickQuestions()); }, []);
+  useEffect(() => {
+    // Shuffles with Math.random(), so it must run client-side only to avoid a hydration mismatch.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setQuestions(pickQuestions());
+  }, []);
 
   useEffect(() => () => {
     if (pollRef.current)  clearInterval(pollRef.current);

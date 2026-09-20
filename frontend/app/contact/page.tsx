@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { LsPublicNav, LsFooter } from '../components/ls/Components';
 import * as I from '../components/ls/Icons';
+import { API_BASE } from '../lib/api';
 
 const INFO = [
   {
@@ -86,7 +87,7 @@ export default function ContactPage() {
                 e.preventDefault();
                 setSending(true); setError('');
                 try {
-                  const res = await fetch('http://localhost:8000/api/contact', {
+                  const res = await fetch(`${API_BASE}/api/contact`, {
                     method: 'POST', headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(form),
                   });

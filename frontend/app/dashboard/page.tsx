@@ -42,6 +42,8 @@ export default function DashboardPage() {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
 
   useEffect(() => {
+    // History lives in localStorage, only readable client-side after mount.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setStreak(getStreak());
     setTotal(getTotalSigns());
     setWeek(getWeek());

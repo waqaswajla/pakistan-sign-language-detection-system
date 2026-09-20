@@ -17,6 +17,7 @@ env/
 backend/.env
 *.env
 .env.*
+!.env.example
 
 # ── Large data / media (use Git LFS or share separately) ────────────────────
 backend/data/guide/

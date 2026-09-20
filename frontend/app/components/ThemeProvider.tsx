@@ -13,6 +13,9 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     const saved = localStorage.getItem("psl-theme") as Theme | null;
+    // localStorage is only readable client-side, so this must run in an effect;
+    // it can't be a useState lazy initializer without crashing SSR.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     if (saved === "light" || saved === "dark") setTheme(saved);
   }, []);
 
